@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Production build
+dist/
+
+# Debug files
+*.log
+npm-debug.log*
+
+# Temp scripts
+original_bundle.js
+app_code_extracted.js
+extracted_custom.css
+scripts/analyze_bundle.py
+scripts/extract_css.py
+
+# Environment
+.env
+.env.local
+.env.production
+
+# OS
+.DS_Store
+Thumbs.db
