@@ -5,13 +5,11 @@ export default function CustomCursor() {
   const [hovered, setHovered] = useState(false);
   const [clicked, setClicked] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [particles, setParticles] = useState([]);
 
-  const dotRef = useRef(null);
-  const ringRef = useRef(null);
-
+  const swordRef = useRef(null);
   const mousePos = useRef({ x: -100, y: -100 });
-  const ringPos = useRef({ x: -100, y: -100 });
-  const animFrameId = useRef(null);
+  const lastParticleTime = useRef(0);
 
   useEffect(() => {
     // Only enable on desktop with fine mouse pointer
@@ -25,9 +23,28 @@ export default function CustomCursor() {
       mousePos.current = { x: e.clientX, y: e.clientY };
       if (!visible) setVisible(true);
 
-      // Instantly position the inner precision dot
-      if (dotRef.current) {
-        dotRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+      // Instant 1:1 hardware-accelerated positioning (hotspot is 0, 0 at sword tip)
+      if (swordRef.current) {
+        swordRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+      }
+
+      // Enchanted sparkle trail throttle (every 90ms when moving)
+      const now = performance.now();
+      if (now - lastParticleTime.current > 85) {
+        lastParticleTime.current = now;
+        const newParticle = {
+          id: Math.random(),
+          x: e.clientX + 6 + (Math.random() * 8 - 4),
+          y: e.clientY + 6 + (Math.random() * 8 - 4),
+          size: Math.random() > 0.5 ? 4 : 3,
+          color: Math.random() > 0.35 ? '#38BDF8' : '#F59E0B',
+        };
+
+        setParticles((prev) => [...prev.slice(-10), newParticle]);
+
+        setTimeout(() => {
+          setParticles((prev) => prev.filter((p) => p.id !== newParticle.id));
+        }, 500);
       }
     };
 
@@ -53,20 +70,6 @@ export default function CustomCursor() {
     document.addEventListener('mouseenter', onMouseEnter);
     document.addEventListener('mouseover', handleMouseOver, { passive: true });
 
-    // Smooth RAF loop for the outer ring trailing lag
-    const loop = () => {
-      // Lerp ring towards mouse
-      ringPos.current.x += (mousePos.current.x - ringPos.current.x) * 0.22;
-      ringPos.current.y += (mousePos.current.y - ringPos.current.y) * 0.22;
-
-      if (ringRef.current) {
-        ringRef.current.style.transform = `translate3d(${ringPos.current.x}px, ${ringPos.current.y}px, 0)`;
-      }
-      animFrameId.current = requestAnimationFrame(loop);
-    };
-
-    animFrameId.current = requestAnimationFrame(loop);
-
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mousedown', onMouseDown);
@@ -74,7 +77,6 @@ export default function CustomCursor() {
       document.removeEventListener('mouseleave', onMouseLeave);
       document.removeEventListener('mouseenter', onMouseEnter);
       document.removeEventListener('mouseover', handleMouseOver);
-      if (animFrameId.current) cancelAnimationFrame(animFrameId.current);
     };
   }, [visible]);
 
@@ -82,42 +84,59 @@ export default function CustomCursor() {
 
   return (
     <div
-      className={`pointer-events-none fixed inset-0 z-50 transition-opacity duration-300 ${
+      className={`pointer-events-none fixed inset-0 z-50 transition-opacity duration-200 select-none ${
         visible ? 'opacity-100' : 'opacity-0'
       }`}
     >
-      {/* 1. Precision Center Dot */}
-      <div
-        ref={dotRef}
-        style={{ willChange: 'transform' }}
-        className="fixed top-0 left-0 -ml-1 -mt-1 pointer-events-none z-50"
-      >
-        <div
-          className={`rounded-full transition-all duration-150 ${
-            hovered
-              ? 'w-2.5 h-2.5 -ml-0.5 -mt-0.5 bg-amber-400 shadow-[0_0_12px_#F59E0B]'
-              : 'w-2 h-2 bg-sky-400 shadow-[0_0_10px_#38BDF8]'
-          } ${clicked ? 'scale-75' : 'scale-100'}`}
+      {/* Enchanted Diamond Sparkle Particles */}
+      {particles.map((p) => (
+        <span
+          key={p.id}
+          className="fixed pointer-events-none rounded-full animate-ping"
+          style={{
+            left: `${p.x}px`,
+            top: `${p.y}px`,
+            width: `${p.size}px`,
+            height: `${p.size}px`,
+            backgroundColor: p.color,
+            boxShadow: `0 0 8px ${p.color}`,
+            transform: 'translate(-50%, -50%)',
+            animationDuration: '500ms',
+          }}
         />
-      </div>
+      ))}
 
-      {/* 2. Trailing Outer Cyber Ring */}
+      {/* Minecraft Diamond Sword Cursor Element */}
       <div
-        ref={ringRef}
+        ref={swordRef}
         style={{ willChange: 'transform' }}
-        className="fixed top-0 left-0 pointer-events-none z-50"
+        className="fixed top-0 left-0 pointer-events-none z-50 transition-transform duration-75 ease-out"
       >
         <div
-          className={`-ml-4 -mt-4 rounded-full border transition-all duration-200 ease-out flex items-center justify-center ${
-            hovered
-              ? 'w-12 h-12 -ml-6 -mt-6 border-amber-400/80 bg-amber-400/10 shadow-[0_0_20px_rgba(245,158,11,0.25)] scale-110'
-              : 'w-8 h-8 border-sky-400/60 bg-sky-400/5 shadow-[0_0_12px_rgba(56,189,248,0.2)]'
-          } ${clicked ? 'scale-90 border-emerald-400' : ''}`}
+          className={`origin-top-left transition-all duration-150 ease-out select-none ${
+            clicked
+              ? '-rotate-45 translate-x-1 translate-y-1 scale-95'
+              : hovered
+              ? '-rotate-12 scale-110'
+              : 'rotate-0 scale-100'
+          }`}
+          style={{
+            filter: clicked
+              ? 'drop-shadow(0 0 10px #10B981) drop-shadow(0 0 4px #55FFFF)'
+              : hovered
+              ? 'drop-shadow(0 0 9px #F59E0B) drop-shadow(0 0 4px #38BDF8)'
+              : 'drop-shadow(0 0 6px rgba(56, 189, 248, 0.75))',
+          }}
         >
-          {/* Subtle Cyber Target Crosshair ticks when hovering */}
-          {hovered && (
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping opacity-75" />
-          )}
+          {/* Pixel-perfect Minecraft Diamond Sword SVG */}
+          <img
+            src="/assets/diamond_sword_cursor.svg"
+            alt="Diamond Sword Cursor"
+            width={34}
+            height={34}
+            className="select-none pointer-events-none [image-rendering:pixelated]"
+            draggable={false}
+          />
         </div>
       </div>
     </div>
