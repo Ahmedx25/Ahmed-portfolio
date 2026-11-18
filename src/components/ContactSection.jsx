@@ -111,35 +111,35 @@ export default function ContactSection({ onSoundTrigger }) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         {/* Left: contact.sh Terminal Card */}
         <RevealWrapper className="lg:col-span-7 w-full">
-          <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-700/80 bg-slate-900/90 font-mono text-sm backdrop-blur-md relative">
+          <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-700/80 bg-slate-900/90 font-mono text-xs sm:text-sm backdrop-blur-md relative">
             {/* Ambient Line */}
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-emerald-500 via-sky-400 to-amber-500"></div>
 
             {/* Terminal Header */}
-            <div className="flex items-center justify-between px-4 py-3 bg-slate-800 border-b border-slate-700 select-none">
-              <div className="flex items-center gap-2">
+            <div className="flex items-center justify-between px-3 py-2.5 bg-slate-800 border-b border-slate-700 select-none gap-2">
+              <div className="flex items-center gap-2 shrink-0">
                 <span className="w-3 h-3 rounded-full bg-red-500 shadow-sm shadow-red-500/50"></span>
                 <span className="w-3 h-3 rounded-full bg-amber-500 shadow-sm shadow-amber-500/50"></span>
                 <span className="w-3 h-3 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500/50"></span>
               </div>
-              <div className="flex items-center gap-2 text-slate-400 font-mono text-xs">
-                <Terminal size={13} className="text-amber-400" />
-                <span className="text-slate-200 font-semibold">ahmed-contact.sh</span>
+              <div className="flex items-center gap-1.5 text-slate-400 font-mono text-[11px] min-w-0 overflow-hidden">
+                <Terminal size={12} className="text-amber-400 shrink-0" />
+                <span className="text-slate-200 font-semibold truncate">ahmed-contact.sh</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5 shrink-0">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span className="text-[10px] text-emerald-400">ONLINE</span>
+                <span className="text-[10px] text-emerald-400 hidden sm:inline">ONLINE</span>
               </div>
             </div>
 
             {/* Terminal Body */}
-            <div className="p-6 md:p-8 space-y-6 bg-[#08101E]/95">
+            <div className="p-4 sm:p-6 md:p-8 space-y-5 sm:space-y-6 bg-[#08101E]/95">
               {/* Location */}
               <div className="hover:bg-slate-800/30 p-2.5 rounded-xl transition-colors">
                 <div className="text-slate-400 text-xs mb-1">
                   <span className="text-amber-400 font-bold">$</span> echo $LOCATION
                 </div>
-                <div className="text-white font-semibold flex items-center gap-2 text-base">
+                <div className="text-white font-semibold flex items-center gap-2 text-sm sm:text-base">
                   <MapPin size={16} className="text-red-400 shrink-0" />
                   <span>{personalInfo.location}</span>
                 </div>
@@ -150,8 +150,8 @@ export default function ContactSection({ onSoundTrigger }) {
                 <div className="text-slate-400 text-xs mb-1">
                   <span className="text-amber-400 font-bold">$</span> echo $ROLE
                 </div>
-                <div className="text-white font-semibold flex items-center gap-2 text-base">
-                  <Clock size={16} className="text-sky-400 shrink-0" />
+                <div className="text-white font-semibold flex items-start gap-2 text-sm sm:text-base">
+                  <Clock size={16} className="text-sky-400 shrink-0 mt-0.5" />
                   <span>{personalInfo.role} · Business Intelligence & Statistics</span>
                 </div>
               </div>

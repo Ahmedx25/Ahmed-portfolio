@@ -148,14 +148,16 @@ export default function Hero({ entered = true, onSoundTrigger }) {
             {/* Profile Terminal Box */}
             <div className="relative rounded-2xl bg-slate-900/95 border border-slate-700/80 p-5 shadow-2xl backdrop-blur-md">
               {/* Terminal Window Header */}
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800 font-mono text-xs text-slate-400">
-                <div className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-full bg-red-500/90 shadow-sm shadow-red-500/50"></span>
-                  <span className="w-3 h-3 rounded-full bg-amber-500/90 shadow-sm shadow-amber-500/50"></span>
-                  <span className="w-3 h-3 rounded-full bg-emerald-500/90 shadow-sm shadow-emerald-500/50"></span>
-                  <span className="ml-2 text-slate-200 font-semibold">ahmed_identity.sql</span>
+              <div className="flex items-center justify-between pb-3 border-b border-slate-800 font-mono text-xs text-slate-400 gap-2">
+                <div className="flex items-center gap-2 min-w-0">
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-500/90 shadow-sm shadow-red-500/50"></span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500/90 shadow-sm shadow-amber-500/50"></span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/90 shadow-sm shadow-emerald-500/50"></span>
+                  </div>
+                  <span className="ml-1 text-slate-200 font-semibold text-[11px] sm:text-xs truncate">ahmed_identity.sql</span>
                 </div>
-                <div className="flex items-center gap-2 text-emerald-400 text-[11px] font-bold bg-emerald-950/70 px-2.5 py-0.5 rounded-full border border-emerald-800/50 shadow-sm">
+                <div className="flex items-center gap-1.5 text-emerald-400 text-[10px] sm:text-[11px] font-bold bg-emerald-950/70 px-2 sm:px-2.5 py-0.5 rounded-full border border-emerald-800/50 shadow-sm shrink-0">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
                   <span>{personalInfo.statusText}</span>
                 </div>
@@ -163,17 +165,17 @@ export default function Hero({ entered = true, onSoundTrigger }) {
 
               {/* Terminal Bio Stats & Interactive Query */}
               <div className="mt-4 space-y-3 font-mono text-xs">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-start gap-1.5 text-slate-300 text-[11px]">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div className="flex flex-wrap items-center gap-1.5 text-slate-300 text-[10px] sm:text-[11px]">
                     <span className="text-amber-400 font-bold select-none">SELECT</span>
-                    <span className="text-sky-300">Degree, Specialization, Focus</span>
+                    <span className="text-sky-300">Degree, Focus</span>
                     <span className="text-amber-400 font-bold select-none">FROM</span>
                     <span className="text-emerald-400 font-semibold">Education</span>
                   </div>
 
                   <button
                     onClick={handleRunQuery}
-                    className="flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-blue-600/30 text-sky-300 hover:bg-blue-600 hover:text-white border border-blue-500/40 transition-all cursor-pointer active:scale-95"
+                    className="self-start sm:self-auto flex items-center gap-1 px-2.5 py-1 rounded text-[10px] font-bold bg-blue-600/30 text-sky-300 hover:bg-blue-600 hover:text-white border border-blue-500/40 transition-all cursor-pointer active:scale-95 shrink-0"
                     title="Simulate SQL Execution"
                   >
                     <Play size={10} className={executing ? 'animate-spin' : ''} />
@@ -182,20 +184,20 @@ export default function Hero({ entered = true, onSoundTrigger }) {
                 </div>
 
                 <div className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/90 space-y-1.5 text-[11px] relative overflow-hidden">
-                  <div className="text-slate-100 font-semibold flex items-center justify-between">
+                  <div className="text-slate-100 font-semibold flex flex-col sm:flex-row sm:items-center justify-between gap-1">
                     <span>Faculty of Science, Ain Shams University</span>
-                    <span className="text-amber-400 font-bold">2022–2026</span>
+                    <span className="text-amber-400 font-bold shrink-0">2022–2026</span>
                   </div>
                   <div className="text-sky-400 font-medium">Program: Statistics & Computer Science</div>
                   <div className="text-slate-400 text-[10px] flex items-center gap-1.5">
-                    <Sparkles size={11} className="text-amber-400" />
-                    <span>Analytical Focus: BI Dashboards, SQL Modeling & Statistical Inference</span>
+                    <Sparkles size={11} className="text-amber-400 shrink-0" />
+                    <span className="leading-tight">Focus: BI Dashboards, SQL Modeling & Statistics</span>
                   </div>
 
                   {queryExecuted && (
-                    <div className="mt-2 pt-2 border-t border-slate-800 text-[10px] text-emerald-400 flex items-center justify-between animate-in fade-in">
+                    <div className="mt-2 pt-2 border-t border-slate-800 text-[10px] text-emerald-400 flex flex-wrap items-center justify-between gap-1 animate-in fade-in">
                       <span>✓ 1 row in set (0.04 sec)</span>
-                      <span className="text-slate-500">OPTIMIZED_EXECUTION_PLAN</span>
+                      <span className="text-slate-500 text-[9px]">OPTIMIZED_PLAN</span>
                     </div>
                   )}
                 </div>
