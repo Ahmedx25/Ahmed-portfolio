@@ -12,7 +12,7 @@ export const personalInfo = {
   rawPhone: "+201022711764",
   email: "ahmedabdelfattah5655@gmail.com",
   linkedin: "https://www.linkedin.com/in/ahmed-abdel-fattah-272787302",
-  github: "https://github.com/ahmed-abdel-fattah-data",
+  github: "https://github.com/Ahmedx25",
   whatsapp: "https://wa.me/201022711764",
   available: true,
   statusText: "AVAILABLE FOR WORK",
@@ -107,13 +107,13 @@ export const projectsData = [
     tag: "E-Commerce Analytics · RFM Segmentation",
     tools: "Python · SQL Server · Power BI · RFM · ETL Pipeline",
     desc: "Developed 4 highly interactive Power BI dashboards, translating millions of Brazilian e-commerce records into actionable insights that identified a critical 3.12% retention rate and logistical bottlenecks, delivering actionable, data-driven solutions, including the launch of loyalty program and regional supply chain restructuring.",
-    img: "/assets/ecomerace-7Dkp-LKz.png",
+    img: "/assets/olist_ecommerce_1.png",
     metrics: [
       { label: "Retention Rate Alert", value: "3.12%" },
       { label: "Records Modeled", value: "1M+" },
       { label: "Dashboards", value: "4 Executive Views" }
     ],
-    githubLink: "https://github.com/ahmed-abdel-fattah-data",
+    githubLink: "https://github.com/Ahmedx25/Olist-ECommerce",
     liveLink: null,
     highlight: "Identified critical 3.12% retention bottleneck & restructured logistics"
   },
@@ -123,13 +123,13 @@ export const projectsData = [
     tag: "Hospital Operations · Multi-Department BI",
     tools: "SQL Server · Power BI · DAX · Medical Data Modeling",
     desc: "Delivered 4 interactive dashboards (Executive Overview, Patient Admissions, Lab & Diagnostics, and Pharmacy Inventory) uncovering critical insights such as a 61%/39% out-of-pocket vs. insurance payment split and department-level performance patterns across revenue, admissions, and prescriptions.",
-    img: "/assets/healthcare%20analytics_page-0001-B8Yh7UaG.jpg",
+    img: "/assets/healthcare_executive.png",
     metrics: [
       { label: "Payment Split", value: "61% / 39%" },
       { label: "Dashboards", value: "4 Systems" },
       { label: "Departments", value: "Admissions, Lab, Pharmacy" }
     ],
-    githubLink: "https://github.com/ahmed-abdel-fattah-data",
+    githubLink: "https://github.com/Ahmedx25/Healthcare",
     liveLink: null,
     highlight: "Uncovered 61%/39% payment split & multi-department bottlenecks"
   },
@@ -139,84 +139,31 @@ export const projectsData = [
     tag: "Operations & Logistics Analytics · Root-Cause Analysis",
     tools: "Advanced Excel · Power Query · Pivot Reporting · Root Cause Analysis",
     desc: "Built an interactive Excel dashboard to analyze 27,000+ logistics and cargo shipping records, highlighting an 82.2% late delivery rate and 73% cargo damage rate, successfully tracing root causes to a 27.7% equipment availability deficit and recommending targeted operational remedies.",
-    img: "/assets/markiting-1_page-0001-CcQ1KZBa.jpg",
+    img: "/assets/supply_chain_dashboard.png",
     metrics: [
       { label: "Records Analyzed", value: "27,000+" },
       { label: "Late Delivery Rate", value: "82.2%" },
       { label: "Equipment Deficit", value: "27.7%" }
     ],
-    githubLink: "https://github.com/ahmed-abdel-fattah-data",
+    githubLink: "https://github.com/Ahmedx25/Supply-Chain",
     liveLink: null,
     highlight: "Isolated 27.7% equipment shortage driving 82.2% late delivery rate"
   },
   {
-    id: "osol-crm",
-    title: "Osol Real Estate CRM & Analytics",
-    tag: "Graduation Project · CRM & Database Architecture",
-    tools: "SQL Server · Statistics & CS · Python · C++ · Pipeline Analytics",
-    desc: "Official Graduation Project for the Statistics and Computer Science Program at Ain Shams University Faculty of Science. Engineered an enterprise real estate customer relationship management database system and analytical dashboard tracking lead conversion pipelines, agent performance, property valuation models, and sales forecasting.",
-    img: "/assets/linkedin%20dashboard_page-0001-7sdbRReX.jpg",
+    id: "lumera-campaign",
+    title: "LUMERA — Business Intelligence & Campaign Dashboard",
+    tag: "Executive BI · Marketing & Sales Performance",
+    tools: "Power BI Desktop · Advanced DAX · Star Schema · Geospatial Mapping",
+    desc: "A comprehensive, multi-page Business Intelligence solution delivering a 360-degree view of business performance across $527K in gross sales, profit margins, marketing campaign ROI across 7M impressions, customer demographics, and 95.4% target attainment across multiple operational dimensions.",
+    img: "/assets/lumera_executive.png",
     metrics: [
-      { label: "Ain Shams Univ", value: "Faculty of Science" },
-      { label: "Program", value: "Statistics & CS" },
-      { label: "Domain", value: "PropTech CRM" }
+      { label: "Gross Sales / Attain", value: "$527K · 95.4%" },
+      { label: "Marketing Reach", value: "7M · 3.19% CTR" },
+      { label: "Gross Margin", value: "36.9%" }
     ],
-    githubLink: "https://github.com/ahmed-abdel-fattah-data",
+    githubLink: "https://github.com/Ahmedx25/LUMERA-Campaign",
     liveLink: null,
-    highlight: "Graduation Project combining pure statistical modeling with CRM architecture"
-  }
-];
-
-export const certificationsData = [
-  {
-    id: 1,
-    title: "Business Intelligence Specialist",
-    issuer: "Information Technology Institute (ITI)",
-    category: "Business Intelligence",
-    date: "2025",
-    image: "/assets/Associate Data Analyst in SQL_page-0001-qGwMj4BZ.jpg",
-    credential: "https://iti.gov.eg",
-    quote: "Completed 120+ intensive hours in SQL Server, SSIS ETL pipelines, SSAS tabular models, SSRS enterprise reports, Data Warehousing, Power BI, and Tableau."
-  },
-  {
-    id: 2,
-    title: "Data Analyst Professional Track",
-    issuer: "Digital Egypt Pioneers Initiative (DEPI)",
-    category: "Data Analytics",
-    date: "2025 – 2026",
-    image: "/assets/Associate Data Analyst in SQL_page-0001-qGwMj4BZ.jpg",
-    credential: "https://depi.gov.eg",
-    quote: "Comprehensive training solving end-to-end business scenarios utilizing Python, SQL Server, Advanced Excel, and Power BI with emphasis on business impact."
-  },
-  {
-    id: 3,
-    title: "B.Sc. in Statistics and Computer Science",
-    issuer: "Ain Shams University — Faculty of Science",
-    category: "Higher Education Degree",
-    date: "2022 – 2026",
-    image: null,
-    credential: "https://sci.asu.edu.eg",
-    quote: "Rigorous academic double major blending mathematical statistics, probability distributions, data structures, and computer science systems."
-  },
-  {
-    id: 4,
-    title: "Advanced SQL & Relational Database Design",
-    issuer: "ITI & DEPI Specialized Modules",
-    category: "SQL & Databases",
-    date: "2025",
-    image: "/assets/Associate Data Analyst in SQL_page-0001-qGwMj4BZ.jpg",
-    credential: "https://github.com/ahmed-abdel-fattah-data",
-    quote: "Mastery of complex multi-table joins, subqueries, CTEs, window functions, indexing strategies, star schema modeling, and query execution plan optimization."
-  },
-  {
-    id: 5,
-    title: "Enterprise Power BI & Tableau Dashboards",
-    issuer: "ITI BI Program",
-    category: "Data Visualization",
-    date: "2025",
-    image: null,
-    credential: "https://github.com/ahmed-abdel-fattah-data",
-    quote: "Designed production-grade dashboards with complex DAX measures, time-intelligence comparisons, dynamic parameters, and executive storytelling."
+    highlight: "Multi-page executive BI dashboard achieving 95.4% target attainment and isolating high-ROI campaign reallocation strategies"
   }
 ];
 
@@ -227,7 +174,6 @@ export const educationData = [
     institution: "Faculty of Science, Ain Shams University",
     location: "Cairo, Egypt",
     badge: "Graduated",
-    project: "Graduation Project: Osol Real Estate CRM",
     desc: "Rigorous dual specialization combining mathematical statistics, probability theory, hypothesis testing, and numerical analysis with software engineering, algorithms, and database systems — establishing deep analytical rigor for predictive business intelligence, star schema modeling, and complex SQL workflows."
   }
 ];

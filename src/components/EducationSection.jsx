@@ -75,27 +75,25 @@ export default function EducationSection() {
                 </div>
               </div>
 
-              {/* Graduation Capstone Highlight Card */}
-              {edu.project && (
-                <div className="mb-6 p-4 md:p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-slate-900 to-sky-500/10 border border-amber-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 relative z-10">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
-                      <Sparkles size={20} />
+              {/* Academic Specialization Highlight Card */}
+              <div className="mb-6 p-4 md:p-5 rounded-2xl bg-gradient-to-r from-blue-500/10 via-slate-900 to-sky-500/10 border border-sky-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 relative z-10">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center shrink-0">
+                    <Sparkles size={20} />
+                  </div>
+                  <div>
+                    <div className="text-[11px] font-mono text-sky-400 uppercase tracking-widest font-bold">
+                      Academic Specialization & Core Track
                     </div>
-                    <div>
-                      <div className="text-[11px] font-mono text-amber-400 uppercase tracking-widest font-bold">
-                        Academic Capstone Project
-                      </div>
-                      <div className="text-sm md:text-base font-bold text-white">
-                        {edu.project}
-                      </div>
+                    <div className="text-sm md:text-base font-bold text-white">
+                      Statistics and Computer Science Program
                     </div>
                   </div>
-                  <span className="text-xs font-mono text-sky-300 bg-sky-950/60 px-3 py-1 rounded-full border border-sky-800/60 self-start sm:self-center">
-                    Statistics & CS CRM Architecture
-                  </span>
                 </div>
-              )}
+                <span className="text-xs font-mono text-amber-300 bg-amber-950/60 px-3 py-1 rounded-full border border-amber-800/60 self-start sm:self-center">
+                  Statistical Inference & Computational Analytics
+                </span>
+              </div>
 
               {/* Detailed Program Narrative */}
               <p className="text-sm md:text-base text-slate-300 leading-relaxed mb-6 relative z-10">

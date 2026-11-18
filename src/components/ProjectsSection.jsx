@@ -8,7 +8,7 @@ const filterCategories = [
   'Power BI & DAX',
   'SQL & Data Warehouse',
   'Excel Analytics',
-  'Statistics & Capstone'
+  'LUMERA & Campaigns'
 ];
 
 export default function ProjectsSection({ onSoundTrigger }) {
@@ -35,7 +35,7 @@ export default function ProjectsSection({ onSoundTrigger }) {
     if (activeFilter === 'Power BI & DAX') return p.tools.includes('Power BI') || p.tools.includes('DAX');
     if (activeFilter === 'SQL & Data Warehouse') return p.tools.includes('SQL Server') || p.tools.includes('ETL');
     if (activeFilter === 'Excel Analytics') return p.tools.includes('Excel');
-    if (activeFilter === 'Statistics & Capstone') return p.tools.includes('Statistics') || p.id === 'osol-crm';
+    if (activeFilter === 'LUMERA & Campaigns') return p.id === 'lumera-campaign';
     return true;
   });
 

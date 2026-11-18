@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Terminal, ExternalLink } from 'lucide-react';
+import { Menu, X, Terminal, ExternalLink, Download } from 'lucide-react';
 
 export default function Navbar({ canvasEnabled, setCanvasEnabled, onSoundTrigger }) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -47,6 +47,18 @@ export default function Navbar({ canvasEnabled, setCanvasEnabled, onSoundTrigger
               </li>
             ))}
           </ul>
+
+          {/* CV Download Button */}
+          <a
+            href="/Ahmed_CV.pdf"
+            download="Ahmed_Abdel_Fattah_CV.pdf"
+            onClick={() => onSoundTrigger && onSoundTrigger()}
+            className="px-3 py-1.5 rounded-full font-mono text-xs font-bold border border-amber-500/50 text-amber-400 hover:bg-amber-500/20 hover:border-amber-400 transition-all flex items-center gap-1.5 shadow-[0_0_10px_rgba(245,158,11,0.15)] hover:shadow-[0_0_16px_rgba(245,158,11,0.3)]"
+            title="Download CV"
+          >
+            <Download size={13} />
+            <span>CV</span>
+          </a>
 
           {/* BG FX Toggle Button */}
           <button
@@ -114,7 +126,15 @@ export default function Navbar({ canvasEnabled, setCanvasEnabled, onSoundTrigger
           </div>
 
           <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between">
-            <span className="text-xs text-slate-400">Background Flow</span>
+            <a
+              href="/Ahmed_CV.pdf"
+              download="Ahmed_Abdel_Fattah_CV.pdf"
+              onClick={handleLinkClick}
+              className="px-4 py-2 rounded-full font-mono text-xs font-bold border border-amber-500/50 text-amber-400 hover:bg-amber-500/20 transition-all flex items-center gap-2"
+            >
+              <Download size={13} />
+              <span>Download CV</span>
+            </a>
             <button
               onClick={() => setCanvasEnabled(!canvasEnabled)}
               className="flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-slate-800 text-slate-200 border border-slate-700"

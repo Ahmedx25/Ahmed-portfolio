@@ -105,6 +105,16 @@ export default function Hero({ entered = true, onSoundTrigger }) {
               <FileText size={14} />
               <span>Inquire / Hire</span>
             </a>
+
+            <a
+              href="/Ahmed_CV.pdf"
+              download="Ahmed_Abdel_Fattah_CV.pdf"
+              onClick={() => onSoundTrigger && onSoundTrigger()}
+              className="px-5 py-3 rounded-full font-mono text-xs font-bold uppercase tracking-wider text-emerald-400 border border-emerald-500/40 bg-emerald-500/10 hover:bg-emerald-500/20 hover:border-emerald-400 transition-all hover:scale-105 active:scale-95 flex items-center gap-2 shadow-[0_0_12px_rgba(16,185,129,0.15)] hover:shadow-[0_0_20px_rgba(16,185,129,0.3)]"
+            >
+              <Download size={14} />
+              <span>Download CV</span>
+            </a>
           </div>
 
           {/* Mini Interactive KPI Ticker */}
@@ -155,7 +165,7 @@ export default function Hero({ entered = true, onSoundTrigger }) {
                 <div className="flex items-center justify-between">
                   <div className="flex items-start gap-1.5 text-slate-300 text-[11px]">
                     <span className="text-amber-400 font-bold select-none">SELECT</span>
-                    <span className="text-sky-300">Degree, Specialization, Project</span>
+                    <span className="text-sky-300">Degree, Specialization, Focus</span>
                     <span className="text-amber-400 font-bold select-none">FROM</span>
                     <span className="text-emerald-400 font-semibold">Education</span>
                   </div>
@@ -178,7 +188,7 @@ export default function Hero({ entered = true, onSoundTrigger }) {
                   <div className="text-sky-400 font-medium">Program: Statistics & Computer Science</div>
                   <div className="text-slate-400 text-[10px] flex items-center gap-1.5">
                     <Sparkles size={11} className="text-amber-400" />
-                    <span>Graduation Project: Osol Real Estate CRM</span>
+                    <span>Analytical Focus: BI Dashboards, SQL Modeling & Statistical Inference</span>
                   </div>
 
                   {queryExecuted && (
