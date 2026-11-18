@@ -23,28 +23,28 @@ export default function CustomCursor() {
       mousePos.current = { x: e.clientX, y: e.clientY };
       if (!visible) setVisible(true);
 
-      // Instant 1:1 hardware-accelerated positioning (hotspot is 0, 0 at sword tip)
+      // Hardware accelerated 1:1 position (sword tip is at 0, 0)
       if (swordRef.current) {
         swordRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
       }
 
-      // Enchanted sparkle trail throttle (every 90ms when moving)
+      // Enchanted sparkle trail throttle
       const now = performance.now();
-      if (now - lastParticleTime.current > 85) {
+      if (now - lastParticleTime.current > 75) {
         lastParticleTime.current = now;
         const newParticle = {
           id: Math.random(),
-          x: e.clientX + 6 + (Math.random() * 8 - 4),
-          y: e.clientY + 6 + (Math.random() * 8 - 4),
+          x: e.clientX + 8 + (Math.random() * 8 - 4),
+          y: e.clientY + 8 + (Math.random() * 8 - 4),
           size: Math.random() > 0.5 ? 4 : 3,
           color: Math.random() > 0.35 ? '#38BDF8' : '#F59E0B',
         };
 
-        setParticles((prev) => [...prev.slice(-10), newParticle]);
+        setParticles((prev) => [...prev.slice(-8), newParticle]);
 
         setTimeout(() => {
           setParticles((prev) => prev.filter((p) => p.id !== newParticle.id));
-        }, 500);
+        }, 450);
       }
     };
 
@@ -84,15 +84,16 @@ export default function CustomCursor() {
 
   return (
     <div
-      className={`pointer-events-none fixed inset-0 z-50 transition-opacity duration-200 select-none ${
+      className={`pointer-events-none fixed inset-0 z-[999999] transition-opacity duration-150 select-none ${
         visible ? 'opacity-100' : 'opacity-0'
       }`}
+      style={{ zIndex: 999999 }}
     >
       {/* Enchanted Diamond Sparkle Particles */}
       {particles.map((p) => (
         <span
           key={p.id}
-          className="fixed pointer-events-none rounded-full animate-ping"
+          className="fixed pointer-events-none rounded-full animate-ping z-[999998]"
           style={{
             left: `${p.x}px`,
             top: `${p.y}px`,
@@ -101,19 +102,20 @@ export default function CustomCursor() {
             backgroundColor: p.color,
             boxShadow: `0 0 8px ${p.color}`,
             transform: 'translate(-50%, -50%)',
-            animationDuration: '500ms',
+            animationDuration: '450ms',
+            zIndex: 999998,
           }}
         />
       ))}
 
-      {/* Minecraft Diamond Sword Cursor Element */}
+      {/* Minecraft Diamond Sword Cursor Element (Tip at 0, 0) */}
       <div
         ref={swordRef}
-        style={{ willChange: 'transform' }}
-        className="fixed top-0 left-0 pointer-events-none z-50 transition-transform duration-75 ease-out"
+        style={{ willChange: 'transform', zIndex: 999999 }}
+        className="fixed top-0 left-0 pointer-events-none z-[999999]"
       >
         <div
-          className={`origin-top-left transition-all duration-150 ease-out select-none ${
+          className={`origin-top-left transition-all duration-150 ease-out select-none pointer-events-none ${
             clicked
               ? '-rotate-45 translate-x-1 translate-y-1 scale-95'
               : hovered
@@ -122,19 +124,19 @@ export default function CustomCursor() {
           }`}
           style={{
             filter: clicked
-              ? 'drop-shadow(0 0 10px #10B981) drop-shadow(0 0 4px #55FFFF)'
+              ? 'drop-shadow(0 0 10px #10B981) drop-shadow(0 0 5px #55FFFF)'
               : hovered
-              ? 'drop-shadow(0 0 9px #F59E0B) drop-shadow(0 0 4px #38BDF8)'
+              ? 'drop-shadow(0 0 9px #F59E0B) drop-shadow(0 0 5px #38BDF8)'
               : 'drop-shadow(0 0 6px rgba(56, 189, 248, 0.75))',
           }}
         >
-          {/* Pixel-perfect Minecraft Diamond Sword SVG */}
+          {/* Authentic Minecraft Diamond Sword from user image */}
           <img
-            src="/assets/diamond_sword_cursor.svg"
-            alt="Diamond Sword Cursor"
-            width={34}
-            height={34}
-            className="select-none pointer-events-none [image-rendering:pixelated]"
+            src="/assets/diamond_sword_user.png"
+            alt="Minecraft Diamond Sword"
+            width={38}
+            height={40}
+            className="select-none pointer-events-none block [image-rendering:pixelated]"
             draggable={false}
           />
         </div>

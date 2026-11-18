@@ -3,7 +3,7 @@ import { Volume2, VolumeX } from 'lucide-react';
 
 export default function FloatingDock({ soundEnabled, setSoundEnabled, onSoundTrigger }) {
   return (
-    <div className="hidden md:flex flex-col gap-3 fixed right-4 top-1/2 -translate-y-1/2 z-50 select-none">
+    <div className="hidden md:flex flex-col gap-3 fixed right-4 top-1/2 -translate-y-1/2 z-40 select-none">
       {/* Check my work button */}
       <a
         href="#projects"

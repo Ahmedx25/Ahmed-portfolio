@@ -48,9 +48,6 @@ export default function App() {
       {/* 1. Preloader Screen on Initial Load */}
       {!loaded && <Preloader onDone={() => setLoaded(true)} />}
 
-      {/* Custom Precision Cyber Cursor (Desktop) */}
-      <CustomCursor />
-
       {/* 2. Interactive Mouse Cursor Spotlight Glow */}
       <div
         className="pointer-events-none fixed inset-0 z-20 transition-opacity duration-300 hidden md:block"
@@ -130,6 +127,9 @@ export default function App() {
 
       {/* 8. Footer */}
       <Footer onSoundTrigger={handleSound} />
+
+      {/* 9. Top-most Minecraft Diamond Sword Custom Cursor */}
+      <CustomCursor />
     </div>
   );
 }
