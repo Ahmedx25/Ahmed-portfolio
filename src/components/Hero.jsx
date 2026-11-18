@@ -108,12 +108,13 @@ export default function Hero({ entered = true, onSoundTrigger }) {
 
             <a
               href="/Ahmed_CV.pdf"
-              download="Ahmed_Abdel_Fattah_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => onSoundTrigger && onSoundTrigger()}
               className="px-5 py-3 rounded-full font-mono text-xs font-bold uppercase tracking-wider text-emerald-400 border border-emerald-500/40 bg-emerald-500/10 hover:bg-emerald-500/20 hover:border-emerald-400 transition-all hover:scale-105 active:scale-95 flex items-center gap-2 shadow-[0_0_12px_rgba(16,185,129,0.15)] hover:shadow-[0_0_20px_rgba(16,185,129,0.3)]"
             >
-              <Download size={14} />
-              <span>Download CV</span>
+              <FileText size={14} />
+              <span>View CV</span>
             </a>
           </div>
 

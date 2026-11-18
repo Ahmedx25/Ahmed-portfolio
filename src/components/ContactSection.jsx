@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import RevealWrapper from './RevealWrapper';
 import { personalInfo } from '../data/portfolioData';
 import {
@@ -15,12 +16,24 @@ import {
   Sparkles,
   Terminal,
   FileText,
-  Download
+  Download,
+  Loader2,
+  AlertCircle
 } from 'lucide-react';
+
+// ── EmailJS config ──────────────────────────────────────────────
+// Sign up free at https://www.emailjs.com → Email Services → Add Gmail
+// Then create an Email Template with variables: {{from_name}}, {{from_contact}}, {{message}}
+const EMAILJS_SERVICE_ID  = 'service_ahmed_port';   // ← your Service ID
+const EMAILJS_TEMPLATE_ID = 'template_ahmed_port';  // ← your Template ID
+const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';      // ← your Public Key
+// ───────────────────────────────────────────────────────────────
 
 export default function ContactSection({ onSoundTrigger }) {
   const [copiedField, setCopiedField] = useState(null);
   const [formSent, setFormSent] = useState(false);
+  const [formError, setFormError] = useState(false);
+  const [sending, setSending] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [activeTab, setActiveTab] = useState('sh');
 
@@ -31,14 +44,51 @@ export default function ContactSection({ onSoundTrigger }) {
     setTimeout(() => setCopiedField(null), 2000);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (onSoundTrigger) onSoundTrigger();
-    setFormSent(true);
-    setTimeout(() => {
-      setFormData({ name: '', email: '', message: '' });
-      setFormSent(false);
-    }, 4500);
+    setSending(true);
+    setFormError(false);
+
+    // If EmailJS isn't configured yet → fallback to mailto
+    if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
+      const subject = encodeURIComponent(`Portfolio Inquiry from ${formData.name}`);
+      const body = encodeURIComponent(
+        `Name / Org: ${formData.name}\nContact: ${formData.email}\n\n${formData.message}`
+      );
+      window.open(`mailto:ahmedabdelfattah5655@gmail.com?subject=${subject}&body=${body}`, '_blank');
+      setSending(false);
+      setFormSent(true);
+      setTimeout(() => {
+        setFormData({ name: '', email: '', message: '' });
+        setFormSent(false);
+      }, 4500);
+      return;
+    }
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name:    formData.name,
+          from_contact: formData.email,
+          message:      formData.message,
+          to_name:      'Ahmed',
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+      setSending(false);
+      setFormSent(true);
+      setTimeout(() => {
+        setFormData({ name: '', email: '', message: '' });
+        setFormSent(false);
+      }, 4500);
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      setSending(false);
+      setFormError(true);
+    }
   };
 
   return (
@@ -233,14 +283,21 @@ export default function ContactSection({ onSoundTrigger }) {
                 </div>
                 <h4 className="text-white font-bold text-lg mb-1">Message Dispatched!</h4>
                 <p className="text-xs font-mono text-emerald-300 leading-relaxed">
-                  Thank you! Ahmed has received your inquiry notification and will reach out to your contact address promptly.
+                  Thank you! Ahmed has received your inquiry and will reach out promptly.
                 </p>
                 <div className="mt-4 font-mono text-[11px] text-emerald-400/80">
-                  ⚡ Status: Dispatched to ahmedabdelfattah5655@gmail.com
+                  ⚡ Status: Sent to ahmedabdelfattah5655@gmail.com
                 </div>
               </div>
             ) : (
               <form onSubmit={handleFormSubmit} className="space-y-4 font-mono text-xs">
+                {formError && (
+                  <div className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-red-950/70 border border-red-500/50 text-red-300 text-xs">
+                    <AlertCircle size={14} className="shrink-0 text-red-400" />
+                    <span>Failed to send. Please email directly: <a href="mailto:ahmedabdelfattah5655@gmail.com" className="underline text-red-200">ahmedabdelfattah5655@gmail.com</a></span>
+                  </div>
+                )}
+
                 <div>
                   <label className="block text-slate-300 mb-1">Your Name / Organization</label>
                   <input
@@ -279,10 +336,20 @@ export default function ContactSection({ onSoundTrigger }) {
 
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-xl font-bold uppercase tracking-wider text-white bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-600/30 transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98 hover:shadow-blue-500/50"
+                  disabled={sending}
+                  className="w-full py-3 rounded-xl font-bold uppercase tracking-wider text-white bg-blue-600 hover:bg-blue-500 disabled:opacity-60 disabled:cursor-not-allowed shadow-lg shadow-blue-600/30 transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98 hover:shadow-blue-500/50"
                 >
-                  <Send size={14} />
-                  <span>Execute Send</span>
+                  {sending ? (
+                    <>
+                      <Loader2 size={14} className="animate-spin" />
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send size={14} />
+                      <span>Execute Send</span>
+                    </>
+                  )}
                 </button>
               </form>
             )}
