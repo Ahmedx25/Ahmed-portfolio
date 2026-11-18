@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import RevealWrapper from './RevealWrapper';
-import { projectsData } from '../data/portfolioData';
-import { Code2, ExternalLink, ArrowUpRight, X, Sparkles, Database, BarChart2, Filter, Layers } from 'lucide-react';
+import { projectsData, personalInfo } from '../data/portfolioData';
+import { Code2, ExternalLink, ArrowUpRight, X, Sparkles, Database, BarChart2, Filter, Layers, Github } from 'lucide-react';
 
 const filterCategories = [
   'All Projects',
@@ -182,6 +182,49 @@ export default function ProjectsSection({ onSoundTrigger }) {
           </RevealWrapper>
         ))}
       </div>
+
+      {/* More Projects on GitHub Banner */}
+      <RevealWrapper delay={200} className="mt-12">
+        <div className="relative rounded-2xl overflow-hidden p-6 sm:p-8 bg-gradient-to-r from-slate-900/95 via-[#0C1B33]/90 to-slate-900/95 border border-slate-700/80 hover:border-sky-500/50 transition-all duration-300 shadow-2xl group">
+          {/* Ambient Top Glow Line */}
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-sky-400 via-amber-400 to-emerald-400"></div>
+
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-4 text-center md:text-left flex-col md:flex-row">
+              <div className="w-14 h-14 rounded-2xl bg-slate-800/90 border border-slate-700/80 flex items-center justify-center text-sky-400 shrink-0 shadow-lg shadow-sky-500/10 group-hover:scale-105 group-hover:border-sky-400/50 group-hover:text-amber-400 transition-all">
+                <Github size={28} />
+              </div>
+              <div>
+                <div className="flex items-center justify-center md:justify-start gap-2 text-xs font-mono text-amber-400 uppercase tracking-widest mb-1 font-semibold">
+                  <Sparkles size={13} />
+                  <span>More Repositories &amp; Analysis</span>
+                </div>
+                <h3
+                  className="text-lg sm:text-xl font-bold text-slate-100"
+                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                >
+                  Looking for more data projects and source code?
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-400 font-mono mt-1 max-w-xl">
+                  Explore full SQL scripts, ETL workflows, DAX measures, and exploratory data analysis notebooks on my GitHub.
+                </p>
+              </div>
+            </div>
+
+            <a
+              href={personalInfo.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => onSoundTrigger && onSoundTrigger()}
+              className="px-6 py-3.5 rounded-full font-mono text-xs font-bold uppercase tracking-wider text-slate-950 bg-gradient-to-r from-sky-400 via-amber-400 to-amber-300 hover:brightness-110 shadow-lg shadow-sky-500/20 hover:shadow-amber-500/30 transition-all hover:scale-105 active:scale-95 flex items-center gap-2.5 shrink-0"
+            >
+              <Github size={16} />
+              <span>Explore GitHub Profile</span>
+              <ArrowUpRight size={15} />
+            </a>
+          </div>
+        </div>
+      </RevealWrapper>
 
       {/* Interactive Modal Details */}
       {selectedProject && (

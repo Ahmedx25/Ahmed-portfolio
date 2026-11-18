@@ -11,6 +11,7 @@ import ProjectsSection from './components/ProjectsSection';
 import EducationSection from './components/EducationSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
+import CustomCursor from './components/CustomCursor';
 import { playKeySound, playToggleSound, playSuccessChime } from './utils/audio';
 
 export default function App() {
@@ -46,6 +47,9 @@ export default function App() {
     >
       {/* 1. Preloader Screen on Initial Load */}
       {!loaded && <Preloader onDone={() => setLoaded(true)} />}
+
+      {/* Custom Precision Cyber Cursor (Desktop) */}
+      <CustomCursor />
 
       {/* 2. Interactive Mouse Cursor Spotlight Glow */}
       <div
