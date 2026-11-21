@@ -4,16 +4,9 @@ node_modules/
 # Production build
 dist/
 
-# Debug files
+# Logs & temp
 *.log
 npm-debug.log*
-
-# Temp scripts
-original_bundle.js
-app_code_extracted.js
-extracted_custom.css
-scripts/analyze_bundle.py
-scripts/extract_css.py
 
 # Environment
 .env
